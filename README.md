@@ -8,10 +8,10 @@ Every workplace needs a shop steward or mediator to help balance the interests b
 
 ## Features
 
-🔹 Elect a Steward: Facilitate the election of workplace stewards.
-🔹 Document Grievances: Allow workers to record and document concerns.
-🔹 Mediator Tools: Help stewards present concerns to management.
-🔹 Comprehensive Reporting: Ensure all concerns are properly documented and addressed.
+- 🔹 **Elect a Steward**: Facilitate the election of workplace stewards.
+🔹 **Document Grievances**: Allow workers to record and document concerns.
+🔹 **Mediator Tools**: Help stewards present concerns to management.
+🔹 **Comprehensive Reporting**: Ensure all concerns are properly documented and addressed.
 
 ## Installation
 
