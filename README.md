@@ -8,10 +8,10 @@ Every workplace needs a shop steward or mediator to help balance the interests b
 
 ## Features
 
-- **Mediation Tools:** Facilitate effective communication and conflict resolution between workers and management.
-- **Resource Library:** Access a wealth of information and best practices for workplace collaboration.
-- **Communication Platform:** Secure messaging and discussion boards to keep everyone on the same page.
-- **Event Scheduling:** Plan and schedule meetings, training sessions, and other important events.
+🔹 Elect a Steward: Facilitate the election of workplace stewards.
+🔹 Document Grievances: Allow workers to record and document concerns.
+🔹 Mediator Tools: Help stewards present concerns to management.
+🔹 Comprehensive Reporting: Ensure all concerns are properly documented and addressed.
 
 ## Installation
 
