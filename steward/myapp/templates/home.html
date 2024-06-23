@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Steward Application{% endblock %}</title>
+    <!-- Add any additional CSS files here -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'worker_dashboard' %}">Dashboard</a></li>
+                    <li>
+                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer; font: inherit; margin: 0; padding: 0;">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'worker_login' %}">Worker Login</a></li>
+                    <li><a href="{% url 'organization_login' %}">Organization Login</a></li>
+                    <li><a href="{% url 'worker_signup' %}">Worker Signup</a></li>
+                    <li><a href="{% url 'organization_signup' %}">Organization Signup</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Steward Application. All rights reserved.</p>
+    </footer>
+    <!-- Add any additional JS files here -->
+    
+</body>
+</html>

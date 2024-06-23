@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pmb%xv_pr@4#ak-zn(erw5ykf)1b=#u^lr(&@=8puo(%9rp31w'
+SECRET_KEY = 'django-insecure-4kc0_fk2&td&)%9h1a_tq@(22ou(0u_tthx-lw(+fsu_!gqo_a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -122,3 +122,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Configure message storage
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+
+LOGOUT_REDIRECT_URL = 'home'
