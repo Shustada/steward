@@ -6,15 +6,9 @@
     <h1>Worker Dashboard</h1>
     <p>Username: {{ request.user.username }}</p>
     <p>Email: {{ request.user.email }}</p>
-    <p>Work Address: {{ request.user.profile.work_address }}</p>
-
-    <div style="margin-top: 20px;">
-        <h2>Community Board</h2>
-        <a href="{% url 'community_board' request.user.profile.work_address %}">Go to Community Board</a>
-    </div>
-
-    <form action="{% url 'logout' %}" method="post" style="margin-top: 20px;">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
+    {% if request.user.profile.work_address %}
+        <p>Work Address: {{ request.user.profile.work_address.address }}</p>
+    {% else %}
+        <p>Work Address: Not provided</p>
+    {% endif %}
 {% endblock %}

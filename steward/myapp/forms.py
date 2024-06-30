@@ -68,9 +68,19 @@ class ProfileForm(forms.ModelForm):
         return validated_address, latitude, longitude
 
 class FeedbackForm(forms.ModelForm):
+    anonymous = forms.BooleanField(required=False, label="Submit as Anonymous")
+
     class Meta:
         model = Feedback
-        fields = ['content', 'private']
+        fields = ['content', 'private', 'feedback_type']
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 3}),
+        }
+        labels = {
+            'content': 'Your Feedback',
+            'private': 'Private',
+            'feedback_type': 'Type of Feedback',
+        }
 
 class RecognitionForm(forms.ModelForm):
     class Meta:

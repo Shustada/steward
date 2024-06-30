@@ -5,6 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Steward Application{% endblock %}</title>
     <!-- Add any additional CSS files here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-right: 20px;
+        }
+        nav ul li a, nav ul li form button {
+            color: white;
+            text-decoration: none;
+        }
+        nav ul li form button {
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            font: inherit;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+        .sidebar a {
+            display: block;
+            color: #333;
+            padding: 10px;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -13,10 +84,11 @@
                 <li><a href="{% url 'home' %}">Home</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'worker_dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
                     <li>
                         <form action="{% url 'logout' %}" method="post" style="display: inline;">
                             {% csrf_token %}
-                            <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer; font: inherit; margin: 0; padding: 0;">Logout</button>
+                            <button type="submit">Logout</button>
                         </form>
                     </li>
                 {% else %}
@@ -28,14 +100,25 @@
             </ul>
         </nav>
     </header>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+    <div class="container">
+        <div class="sidebar">
+            {% if user.is_authenticated %}
+                {% if request.user.profile.work_address %}
+                    <a href="{% url 'feedback_center' request.user.profile.work_address.slug %}">Feedback</a>
+                {% endif %}
+                <a href="{% url 'roster' %}">Roster</a>
+                <a href="{% url 'resources' %}">Resources</a>
+                <a href="{% url 'work_journal' %}">Work Journal</a>
+            {% endif %}
+        </div>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
     <footer>
         <p>&copy; 2024 Steward Application. All rights reserved.</p>
     </footer>
     <!-- Add any additional JS files here -->
-    
 </body>
 </html>

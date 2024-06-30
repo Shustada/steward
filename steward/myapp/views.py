@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .forms import OrganizationSignUpForm, WorkerSignUpForm, ProfileForm, FeedbackForm, RecognitionForm, GrievanceForm
 from .models import Profile, Feedback, Recognition, Grievance, CommunityEntry, Organization, WorkAddress
+from django.shortcuts import render, redirect, get_object_or_404
 
 def home(request):
     return render(request, 'home.html')
@@ -84,7 +85,9 @@ def worker_dashboard(request):
     return render(request, 'worker_dashboard.html', context)
 
 @login_required
-def community_board(request, work_address):
+def feedback_center(request, slug):
+    work_address = get_object_or_404(WorkAddress, slug=slug)
+    
     if request.method == 'POST':
         feedback_form = FeedbackForm(request.POST)
         if feedback_form.is_valid():
@@ -95,7 +98,7 @@ def community_board(request, work_address):
             else:
                 feedback_entry.user = request.user
             feedback_entry.save()
-            return redirect(reverse('community_board', args=[work_address]))
+            return redirect('feedback_center', slug=slug)
     else:
         feedback_form = FeedbackForm()
 
@@ -105,4 +108,22 @@ def community_board(request, work_address):
         'feedback_form': feedback_form,
         'feedback_entries': feedback_entries,
     }
-    return render(request, 'community_board.html', context)
+    return render(request, 'feedback_center.html', context)
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html') 
+
+@login_required
+def roster(request):
+    return render(request, 'roster.html') 
+
+@login_required
+def resources(request):
+    return render(request, 'resources.html')  # Ensure you have a resources.html template
+
+@login_required
+def work_journal(request):
+    return render(request, 'work_journal.html')  # Ensure you have a work_journal.html template
+
+
